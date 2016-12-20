@@ -1,6 +1,8 @@
 package com.androiddownloaddemo;
 
+import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
@@ -54,6 +56,10 @@ public class DownloadTask {
                 if (outputFile != null) {
                     buttonText.setEnabled(true);
                     buttonText.setText(R.string.downloadCompleted);//If Download completed then change button text
+                    Intent dm = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS);
+                    dm.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(dm);
+
                 } else {
                     buttonText.setText(R.string.downloadFailed);//If download failed change button text
                     new Handler().postDelayed(new Runnable() {
