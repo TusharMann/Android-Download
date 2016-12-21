@@ -2,6 +2,7 @@ package com.androiddownloaddemo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -16,13 +17,25 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static Button downloadPdf, downloadDoc, downloadZip, downloadVideo, downloadMp3, openDownloadedFolder;
+    OpenFile receiver=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        receiver=new OpenFile();
+        IntentFilter filter=new IntentFilter("android.intent.action.DOWNLOAD_COMPLETE");
+
+        registerReceiver(receiver,filter);
+
         initViews();
         setListeners();
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(receiver);
+        super.onDestroy();
     }
 
     //Initialize al Views

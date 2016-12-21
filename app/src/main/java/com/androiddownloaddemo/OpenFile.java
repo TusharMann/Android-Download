@@ -20,7 +20,7 @@ public class OpenFile extends BroadcastReceiver {
             if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)) {
                 //  *** code for unzipping removed ***
                 Toast.makeText(context,"Download Complete",Toast.LENGTH_LONG).show();
-            } else if (DownloadManager.ACTION_NOTIFICATION_CLICKED.equals(action)) {
+            } else{
                 // Open the download manager
                 // BUT HOW???
 
@@ -29,4 +29,5 @@ public class OpenFile extends BroadcastReceiver {
 
             throw new UnsupportedOperationException("Not yet implemented");
         }
+
 }
