@@ -25,17 +25,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         receiver=new OpenFile();
         IntentFilter filter=new IntentFilter("android.intent.action.DOWNLOAD_COMPLETE");
-
         registerReceiver(receiver,filter);
 
         initViews();
         setListeners();
-    }
-
-    @Override
-    protected void onDestroy() {
-        unregisterReceiver(receiver);
-        super.onDestroy();
     }
 
     //Initialize al Views

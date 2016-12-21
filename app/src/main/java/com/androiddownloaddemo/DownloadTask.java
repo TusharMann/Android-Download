@@ -1,6 +1,5 @@
 package com.androiddownloaddemo;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -24,8 +23,7 @@ public class DownloadTask {
     private Context context;
     private Button buttonText;
     private String downloadUrl = "", downloadFileName = "";
-    BroadcastReceiver receiver=null;
-
+    OpenFile receiver=null;
 
     public DownloadTask(Context context, Button buttonText, String downloadUrl) {
         this.context = context;
@@ -57,6 +55,7 @@ public class DownloadTask {
                 if (outputFile != null) {
                     buttonText.setEnabled(true);
                     buttonText.setText(R.string.downloadCompleted);//If Download completed then change button text
+                    receiver=new OpenFile();
 
                 } else {
                     buttonText.setText(R.string.downloadFailed);//If download failed change button text
@@ -71,7 +70,6 @@ public class DownloadTask {
                     Log.e(TAG, "Download Failed");
 
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
 
@@ -87,6 +85,8 @@ public class DownloadTask {
                 Log.e(TAG, "Download Failed with Exception - " + e.getLocalizedMessage());
 
             }
+
+
             super.onPostExecute(result);
         }
 
@@ -154,5 +154,4 @@ public class DownloadTask {
             return null;
         }
     }
-
 }

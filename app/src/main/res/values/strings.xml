@@ -11,5 +11,6 @@
     <string name="downloadCompleted">Download Completed…</string>
     <string name="downloadFailed">Download Failed…</string>
     <string name="downloadAgain">Download Again</string>
+    <string name="title_activity_pdf_view">Pdf_view</string>
 
 </resources>
